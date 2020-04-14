@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COVID-19</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <style type="text/css">
+        #mapid {
+            margin-top: 100px;
+            height: 280px;
+        }
+
+        #jumbo {
+            margin-top: 150px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- nav bar -->
+
+
+    <div class="row float-left">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+            <img></img>
+            <a class="navbar-brand" href="index.html"><img class=" rounded-circle" src="resources/logo.png" alt=""
+                    width="50"></a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class=" mr-auto"></ul>
+                <form class="form-inline my-2 my-lg-0" id="searchForm">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Country..." aria-label="Search"
+                        id="search" required />
+                    <button class="btn btn-danger" type="submit" data-toggle="modal"
+                        data-target="#staticBackdropSearch">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <!-- landing page -->
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container" id="jumbo">
+            <h1 class="display-4">Fight Back COVID-19</h1>
+            <p class="lead mt-5">Register here to declare yourself SAFE!! and ask for HELP who got affected!!<br>Lets
+                stand
+                together to fight covid!!!</p>
+            <div class="mt-5 pt-5">
+                <button class="btn btn-danger mr-5" type="button" data-toggle="modal"
+                    data-target="#staticBackdropRegister">Register</button>
+                <button class="btn btn-secondary" type="button" data-toggle="modal"
+                    data-target="#staticBackdropLogin">Login</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal register -->
+
+
+    <div class="modal fade" id="staticBackdropRegister" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="register">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Email</label>
+                                <input type="email" class="form-control register" id="inputEmail4" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Password</label>
+                                <input type="password" class="form-control register" id="inputPassword4" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control register" id="inputAddress"
+                                placeholder="1234 Main St">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="inputCity">Country</label>
+                                <input type="text" class="form-control register" id="inputCity" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputCity">City</label>
+                                <input type="text" class="form-control register" id="inputCity" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputState">Affected?</label>
+                                <select id="inputState" class="form-control register" required>
+                                    <option selected>Choose...</option>
+                                    <option>YES</option>
+                                    <option>NO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <footer id="registerStatus"></footer>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal login -->
+
+    <div class="modal fade" id="staticBackdropLogin" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="login">
+                        <div class="form-group col-12">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control login" id="inputEmail4" required>
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="inputPassword4">Password</label>
+                            <input type="password" class="form-control login" id="inputPassword4" required>
+                        </div>
+                        <button type="submit" class="btn btn-info ml-2">Login</button>
+                        <footer id="loginStatus" class="h5 text-danger"></footer>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal Search -->
+
+    <div class="modal fade" id="staticBackdropSearch" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title search font-weight-bold text-center" id="staticBackdropLabel"></h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr class="table-warning p-1">
+                                <th scope="row">Total Confirmed:</th>
+                                <td class="search"></td>
+                                <th scope="row">New Confirmed:</th>
+                                <td class="search"></td>
+                            </tr>
+                            <tr class="table-danger  p-1">
+                                <th scope="row">Total Deaths:</th>
+                                <td class="search"></td>
+                                <th scope="row">New Deaths:</th>
+                                <td class="search"></td>
+                            </tr>
+                            <tr class="table-success  p-1">
+                                <th scope="row">Total Recovered:</th>
+                                <td class="search"></td>
+                                <th scope="row">New Recovered:</th>
+                                <td class="search"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script type="module" src="authenciation.js"></script>
+    <script type="module" src="search.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
